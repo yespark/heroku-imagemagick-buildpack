@@ -10,7 +10,7 @@ This one works was built for [**Heroku stack 20**](https://devcenter.heroku.com/
 
 The tar file in the [/build folder](./build) currently contains: 
 
-Version: ImageMagick 7.0.11-0
+Version: ImageMagick 7.0.11-6
 
 You will need to build a new binary if you want to use a newer or different version. To build a new binary see [How to Build a New Binary](#how-to-build-a-new-binary)
 
