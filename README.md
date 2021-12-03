@@ -48,4 +48,4 @@ However, there is a script called [**build.sh**](./build.sh) made to build a tar
 - https://github.com/retailzipline/heroku-buildpack-imagemagick-heif
 
 ## License
-The gem is available as open source under the terms of the [MIT License][licence].
+The gem is available as open source under the terms of the [MIT License](https://github.com/yespark/heroku-imagemagick-buildpack/blob/master/LICENSE).
