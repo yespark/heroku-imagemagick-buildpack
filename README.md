@@ -39,10 +39,13 @@ The binary in this repo was built in a heroku:20 docker image running in a local
 However, there is a script called [**build.sh**](./build.sh) made to build a tar file through docker easily, it will be copied to the `build` directory. Then you should commit this changes to your git, and adjust the buildpack url previously mentionned just above.
 
 ## Prerequisites
-
 - Docker installed and running in local dev environment. [Get Docker](https://docs.docker.com/get-docker/)
+- 
 ## Credits
 - https://medium.com/@eplt/5-minutes-to-install-imagemagick-with-heic-support-on-ubuntu-18-04-digitalocean-fe2d09dcef1
 - https://github.com/brandoncc/heroku-buildpack-vips
 - https://github.com/steeple-dev/heroku-buildpack-imagemagick
 - https://github.com/retailzipline/heroku-buildpack-imagemagick-heif
+
+## License
+The gem is available as open source under the terms of the [MIT License][licence].
