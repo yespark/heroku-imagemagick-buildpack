@@ -40,7 +40,7 @@ However, there is a script called [**build.sh**](./build.sh) made to build a tar
 
 ## Prerequisites
 - Docker installed and running in local dev environment. [Get Docker](https://docs.docker.com/get-docker/)
-- 
+
 ## Credits
 - https://medium.com/@eplt/5-minutes-to-install-imagemagick-with-heic-support-on-ubuntu-18-04-digitalocean-fe2d09dcef1
 - https://github.com/brandoncc/heroku-buildpack-vips
