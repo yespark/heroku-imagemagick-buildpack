@@ -9,7 +9,7 @@ COMPILE_VERSION_IMAGEMAGICK=$(cat container/Dockerfile | egrep -o 'COMPILE_VERSI
 LATEST_VERSION_LIBDE265=$(curl -s "https://api.github.com/repos/strukturag/libde265/releases/latest" | jq -r .tag_name | sed 's/v//')
 LATEST_VERSION_LIBHEIF=$(curl -s "https://api.github.com/repos/strukturag/libheif/releases/latest" | jq -r .tag_name | sed 's/v//')
 LATEST_VERSION_LIBWEBP=$(curl -s "https://api.github.com/repos/webmproject/libwebp/tags" | jq -r '.[0].name' | sed 's/v//')
-LATEST_VERSION_IMAGEMAGICK=$(curl -s "https://download.imagemagick.org/ImageMagick/download/" | egrep -o 'ImageMagick-([0-9.-]+).tar.bz2' | sort -r | head -n1 | sed 's/ImageMagick-//' | sed 's/.tar.bz2//')
+LATEST_VERSION_IMAGEMAGICK=$(curl -s "https://api.github.com/repos/ImageMagick/ImageMagick/releases/latest" | jq -r .tag_name | sed 's/v//')
 
 if [ "$COMPILE_VERSION_LIBDE265" != "$LATEST_VERSION_LIBDE265" ]; then
   echo "[NEW UPDATE] COMPILE_VERSION_LIBDE265     $COMPILE_VERSION_LIBDE265 🔄 $LATEST_VERSION_LIBDE265"
