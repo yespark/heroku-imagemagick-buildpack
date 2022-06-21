@@ -5,7 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ARG COMPILE_VERSION_LIBDE265=1.0.8
 ARG COMPILE_VERSION_LIBHEIF=1.12.0
 ARG COMPILE_VERSION_LIBWEBP=1.2.2
-ARG COMPILE_VERSION_IMAGEMAGICK=7.1.0-25
+ARG COMPILE_VERSION_IMAGEMAGICK=7.1.0-29
 
 RUN apt-get -yq update \
   # Install install the latest libde265 library
@@ -32,7 +32,7 @@ RUN apt-get -yq update \
   # Get, configure and install imagemagick
   && curl -sSL https://imagemagick.org/download/releases/ImageMagick-$COMPILE_VERSION_IMAGEMAGICK.tar.bz2 | tar jx \
   && cd ImageMagick-$COMPILE_VERSION_IMAGEMAGICK \
-  && ./configure --prefix=/usr/src/imagemagick --with-heic=yes --with-webp=yes --with-openexr=no --with-x=no --disable-docs \
+  && ./configure --prefix=/usr/src/imagemagick --with-modules=yes --with-heic=yes --with-webp=yes --with-tiff=yes --with-openexr=no --with-x=no --disable-docs \
   && make -j$(nproc) \
   && make install \
   # Copy shared libraries just compiled
