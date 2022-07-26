@@ -34,22 +34,24 @@ function vendor() {
 vendor "$ROOT_DIR/build/imagemagick.tar.bz2" "$BUILD_DIR/vendor/imagemagick"
 
 cat <<EOF > export
+export MAGICK_HOME="$BUILD_DIR/vendor/imagemagick"
+export MAGICK_CONFIGURE_PATH="/app/.magick"
 export PATH="/app/bin:$PATH:\$PATH"
 export LD_LIBRARY_PATH="\$LD_LIBRARY_PATH:$LD_LIBRARY_PATH"
 export LIBRARY_PATH="\$LIBRARY_PATH:$LIBRARY_PATH"
 export PKG_CONFIG_PATH="\$PKG_CONFIG_PATH:$PKG_CONFIG_PATH"
 export CPPPATH="\$CPPPATH:$CPPPATH"
 export CPATH="\$CPATH:$CPATH"
-export MAGICK_CONFIGURE_PATH="/app/.magick"
 EOF
 
 mkdir -p $BUILD_DIR/.profile.d
 cat <<EOF > $BUILD_DIR/.profile.d/imagemagick.sh
+export MAGICK_HOME="$BUILD_DIR/vendor/imagemagick"
+export MAGICK_CONFIGURE_PATH="/app/.magick"
 export PATH="/app/bin:${PATH//$BUILD_DIR//app}:\$PATH"
 export LD_LIBRARY_PATH="\$LD_LIBRARY_PATH:${LD_LIBRARY_PATH//$BUILD_DIR//app}"
 export LIBRARY_PATH="\$LIBRARY_PATH:${LIBRARY_PATH//$BUILD_DIR//app}"
 export PKG_CONFIG_PATH="\$PKG_CONFIG_PATH:${PKG_CONFIG_PATH//$BUILD_DIR//app}"
 export CPPPATH="\$CPPPATH:${CPPPATH//$BUILD_DIR//app}"
 export CPATH="\$CPATH:${CPATH//$BUILD_DIR//app}"
-export MAGICK_CONFIGURE_PATH="/app/.magick"
 EOF

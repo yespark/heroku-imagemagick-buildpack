@@ -5,8 +5,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 ARG COMPILE_VERSION_LIBDE265=1.0.8
 ARG COMPILE_VERSION_LIBAOM=3.4.0
 ARG COMPILE_VERSION_LIBHEIF=1.12.0
-ARG COMPILE_VERSION_LIBWEBP=1.2.2
-ARG COMPILE_VERSION_IMAGEMAGICK=7.1.0-39
+ARG COMPILE_VERSION_LIBWEBP=1.2.3
+ARG COMPILE_VERSION_IMAGEMAGICK=7.1.0-44
 
 RUN apt-get -yq update \
   # Needed for libaom library cmake optimizations
@@ -66,4 +66,4 @@ RUN apt-get -yq update \
   # Wrap it up with a bow (compress the binary)
   && rm -rf build \
   && mkdir build \
-  && tar cjf /usr/src/imagemagick/build/imagemagick.tar.bz2 bin include lib
+  && tar cjf /usr/src/imagemagick/build/imagemagick.tar.bz2 bin include lib etc share
