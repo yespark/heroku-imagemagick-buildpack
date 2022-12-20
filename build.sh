@@ -15,6 +15,7 @@ DOCKER_BUILDKIT=1 docker build \
   --no-cache \
   --tag heroku-imagemagick \
   --pull \
+    --progress=plain \
   --build-arg DOCKER_FROM=$DOCKER_FROM \
   --build-arg COMPILE_VERSION_LIBDE265=$COMPILE_VERSION_LIBDE265 \
   --build-arg COMPILE_VERSION_LIBWEBP=$COMPILE_VERSION_LIBWEBP \
