@@ -1,0 +1,37 @@
+name: ci
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.event.pull_request.head.ref || github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  fail_if_pull_request_is_draft:
+    if: github.event.pull_request.draft == true
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Fails in order to indicate that pull request needs to be marked as ready to review and unit tests workflow needs to pass.
+        run: exit 1
+  build:
+    timeout-minutes: 15
+    if: ${{ (github.event_name == 'push' || !github.event.pull_request.draft) }}
+    runs-on: ubuntu-22.04
+    steps:
+      - name: 🏠 Checkout source code from repository
+        uses: actions/checkout@master
+      - name: ℹ️ Packages versions debug
+        run: |
+          docker -v

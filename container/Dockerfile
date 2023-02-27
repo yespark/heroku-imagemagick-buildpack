@@ -21,6 +21,7 @@ RUN <<-EOF
 
   # Update packages from the stack
   apt-get -y update
+  apt-get -y upgrade
 
   # libde265 library
   curl -sSL $DOWNLOAD_URL_LIBDE265 | tar zx
@@ -67,14 +68,16 @@ RUN <<-EOF
   # clean up the build and get ready for packaging
   cd /usr/src/imagemagick
   strip lib/*.a lib/lib*.so*
-  ls -lha share/
   rm -rf share/gtk-doc
   rm -rf share/man
   rm -rf share/thumbnailers
-  ls -lha lib/
 
   # build tar.bz2
   rm -rf build
   mkdir build
   tar cjf /usr/src/imagemagick/build/imagemagick.tar.bz2 bin include lib etc share
 EOF
+
+WORKDIR /imgs
+
+ENTRYPOINT ["convert"]
