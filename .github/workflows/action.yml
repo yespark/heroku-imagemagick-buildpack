@@ -32,6 +32,32 @@ jobs:
     steps:
       - name: 🏠 Checkout source code from repository
         uses: actions/checkout@master
-      - name: ℹ️ Packages versions debug
+      - name: 🗂️ Cache Docker
+        uses: satackey/action-docker-layer-caching@master
+        continue-on-error: true
+      - name: 🧪 Testing
         run: |
-          docker -v
+          docker build heroku/heroku:22-build --tag local-heroku22:$(date +%s)
+          docker run --rm local-heroku22:$(date +%s) convert -list configure
+          # docker run --rm heroku-imagemagick -list configure
+          # docker run --rm -v $(pwd)/local-test-images:/container-test-images heroku-imagemagick -resize 100 /container-test-images/test.jpg /container-test-images/test-resize.jpg
+          # docker run --rm -v $(pwd)/local-test-images:/container-test-images heroku-imagemagick -resize 100 /container-test-images/test.jpg webp:/container-test-images/test-jpg.webp
+          # docker run --rm -v $(pwd)/local-test-images:/container-test-images heroku-imagemagick -resize 100 /container-test-images/test.jpg avif:/container-test-images/test-jpg.avif
+          # docker run --rm -v $(pwd)/local-test-images:/container-test-images heroku-imagemagick -resize 100 /container-test-images/test.png /container-test-images/test-resize.png
+          # docker run --rm -v $(pwd)/local-test-images:/container-test-images heroku-imagemagick -resize 100 /container-test-images/test.png webp:/container-test-images/test-png.webp
+          # docker run --rm -v $(pwd)/local-test-images:/container-test-images heroku-imagemagick -resize 100 /container-test-images/test.png avif:/container-test-images/test-png.avif
+          # docker run --rm -v $(pwd)/local-test-images:/container-test-images heroku-imagemagick -resize 100 /container-test-images/test.png jxl:/container-test-images/test-png.jxl
+          # docker run --rm -v $(pwd)/local-test-images:/container-test-images heroku-imagemagick -resize 100 /container-test-images/test.tiff /container-test-images/test-resize.tiff
+          # docker run --rm -v $(pwd)/local-test-images:/container-test-images heroku-imagemagick -resize 100 /container-test-images/test.tiff webp:/container-test-images/test-tiff.webp
+          # docker run --rm -v $(pwd)/local-test-images:/container-test-images heroku-imagemagick -resize 100 /container-test-images/test.tiff avif:/container-test-images/test-tiff.avif
+          # docker run --rm -v $(pwd)/local-test-images:/container-test-images heroku-imagemagick -resize 100 /container-test-images/test.tiff jxl:/container-test-images/test-tiff.jxl
+          # docker run --rm -v $(pwd)/local-test-images:/container-test-images heroku-imagemagick /container-test-images/test.pdf /container-test-images/test-pdf.png
+          # docker run --rm -v $(pwd)/local-test-images:/container-test-images heroku-imagemagick /container-test-images/jpg-with-metadata.jpg /container-test-images/jpg-with-metadata.webp
+          # docker run --rm -v $(pwd)/local-test-images:/container-test-images heroku-imagemagick -coalesce /container-test-images/test.gif /container-test-images/test-gif.webp
+          # docker run --rm -v $(pwd)/local-test-images:/container-test-images heroku-imagemagick /container-test-images/test.jpg -antialias -font DejaVu-Sans -pointsize 20 -gravity Southeast -annotate +15+15 'TEST' /container-test-images/test-text.jpg
+          # docker run --rm heroku-imagemagick -list configure | grep DELEGATES | grep "fontconfig freetype heic jbig jng jpeg jxl lcms lzma png ps tiff webp x xml zlib"
+        # - name: 🌅 Upload Test Results
+        #   uses: actions/upload-artifact@master
+        #   with:
+        #     name: ubuntu-tests
+        #     path: local-test-images
